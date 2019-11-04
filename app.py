@@ -14,6 +14,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.secret_key = 'abc123'
 
+# this is needed when working locally
+# @app.before_first_request
+# def create_tables():
+#     db.create_all()
+
 api = Api(app)
 
 jwt = JWT(app, authenticate, identity)
@@ -30,5 +35,3 @@ if __name__ == '__main__':
     from db import db
     db.init_app(app)
     app.run(port=5000, debug=True)
-
-# this is some new code
